@@ -29,11 +29,12 @@ export default function PortfolioHero() {
 
         {/* Profile Image */}
         <div className="flex justify-center md:justify-end">
-          <img 
-            src="src\assets\profile-removebg-preview.jpg" 
-            alt="Alex Johnson" 
-            className="w-72 h-72 rounded-b-4xl object-cover shadow-lg"
-          />
+        <img 
+          src="/images/profile-removebg-preview.jpg" 
+          alt="Pakthapriyan" 
+          className="w-72 h-72 rounded-b-4xl object-cover shadow-lg"
+        />
+
         </div>
 
       </div>
