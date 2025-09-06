@@ -21,7 +21,7 @@ export default function About() {
         <span className="text-white font-medium">React, Java, Python, Tailwind CSS, MySQL</span>, 
         and <span className="text-white font-medium">Tableau</span>. 
         Currently, I’m expanding my expertise through the{" "}
-        <span className="text-cyan-300 font-medium">AWS re/Start Program</span> 
+        <span className="text-cyan-300 font-medium">AWS re/Start Program </span> 
         to design and deploy modern cloud-based solutions.
       </p>
     </section>
