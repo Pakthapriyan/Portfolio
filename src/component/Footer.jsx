@@ -1,3 +1,4 @@
+
 // src/components/Footer.jsx
 import React from "react";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
@@ -20,7 +21,7 @@ export default function Footer() {
             <FaEnvelope size={20} />
           </a>
           <a
-            href="https://github.com/yourusername"
+            href="https://github.com/Pakthapriyan"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-cyan-400 transition duration-300"
@@ -28,7 +29,7 @@ export default function Footer() {
             <FaGithub size={20} />
           </a>
           <a
-            href="https://linkedin.com/in/yourusername"
+            href="https://www.linkedin.com/in/paktha-priyan"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-cyan-400 transition duration-300"
