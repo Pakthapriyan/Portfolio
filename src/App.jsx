@@ -7,6 +7,7 @@ import Skills from './component/skills';
 import Contact from './component/Contact';
 import Footer from './component/Footer';
 import About from './component/About';
+import Chatbot from './component/chatbot';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
       <div id="Contact">
         <Contact />
       </div>
+      <Chatbot/>
       <Footer />
     </>
   );
