@@ -40,9 +40,11 @@ export default function Chatbot() {
     "education": "🎓 Completed M.Sc. Computer Science at Sastra University (CGPA: 7.88). Also completed B.Sc. Computer Science (CGPA: 7.10).",
     "experience": "💼 Data Analyst Intern @ NullClass (Dec 2024 - Jan 2025). Worked on EDA, preprocessing, and Tableau visualization.",
     "tech stack": "🛠️ This portfolio is built with React + TailwindCSS, deployed on Vercel.",
+    "about": "🙋‍♂️ Hi, I’m Pakthapriyan! I’m passionate about building scalable web apps, solving problems with data, and exploring cloud technologies (AWS). I enjoy working on full-stack projects and continuously learning new skills to grow as a developer."
   };
 
   const quickOptions = [
+    { label: "About Me", key: "about" },
     { label: "Show Skills", key: "skills" },
     { label: "Show Projects", key: "projects" },
     { label: "AWS Experience", key: "aws" },
