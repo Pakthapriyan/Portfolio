@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { MessageCircle, X } from "lucide-react";
 
 const keywordMap = {
@@ -11,36 +11,39 @@ const keywordMap = {
   education: ["education", "degree", "college", "university", "cgpa"],
   experience: ["experience", "internship", "work", "intern"],
   "tech stack": ["tech stack", "tools", "technology", "built with", "stack"],
+  about: ["about", "who are you", "introduction", "self"],
 };
 
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { sender: "bot", text: "👋 Hi, I'm your Portfolio Assistant! Ask me about skills, AWS, projects, or get my resume." }
+    { sender: "bot", text: "👋 Hi, I'm your Portfolio Assistant! Ask me about skills, AWS, projects, or get my resume." },
   ]);
   const [input, setInput] = useState("");
   const hiddenDownloadRef = useRef(null);
-  
+  const messagesEndRef = useRef(null);
 
   const knowledgeBase = {
-    "skills": "✅ I have experience in Java, React, HTML, CSS, JavaScript, MySQL, and AWS.",
-    "react": "⚛️ I have built projects in React such as the Swiggy Website Clone and my own Portfolio site.",
-    "aws": "☁️ I’m currently pursuing AWS re/Start. Hands-on with EC2, S3, IAM, VPC, RDS, CloudFormation, and CloudWatch. Certification in progress (AWS Cloud Practitioner).",
-    "projects": `📂 I’ve worked on: 
-      <br/>- Job Dataset Analysis 
-      <br/>- IoT Smart LPG Cylinder 
-      <br/>- EV Battery Optimization 
-      <br/>- Parkinson's Disease Prediction 
-      <br/>- Swiggy Website Clone 
-      <br/>- Stock Market Prediction`,
-    "resume": "📄 Downloading resume now...",
-    "contact": `📬 Reach me at <a href="mailto:spakthapriyan@gmail.com" class="text-cyan-600 underline">Email</a> 
-                <br/>🔗 <a href="https://www.linkedin.com/in/paktha-priyan" target="_blank" class="text-cyan-600 underline">LinkedIn</a> 
-                <br/>💻 <a href="https://github.com/your-github" target="_blank" class="text-cyan-600 underline">GitHub</a>`,
-    "education": "🎓 Completed M.Sc. Computer Science at Sastra University (CGPA: 7.88). Also completed B.Sc. Computer Science (CGPA: 7.10).",
-    "experience": "💼 Data Analyst Intern @ NullClass (Dec 2024 - Jan 2025). Worked on EDA, preprocessing, and Tableau visualization.",
+    about: "🙋‍♂️ Hi, I’m Pakthapriyan! I’m passionate about building scalable web apps, solving problems with data, and exploring cloud technologies (AWS).",
+    skills: "✅ I have experience in Java, React, HTML, CSS, JavaScript, MySQL, and AWS.",
+    react: "⚛️ I have built projects in React such as the Swiggy Website Clone and my own Portfolio site.",
+    aws: "☁️ I’m currently pursuing AWS re/Start. Hands-on with EC2, S3, IAM, VPC, RDS, CloudFormation, and CloudWatch. Certification in progress (AWS Cloud Practitioner).",
+    projects: `📂 Check out my projects:
+      <br/>- <a href="https://github.com/Pakthapriyan/Job_Analytics_Portal" target="_blank" class="text-cyan-600 underline">Job Dataset Analysis</a>
+      <br/>- <a href="https://github.com/Pakthapriyan/DETECTION-OF-LPG-LEAKAGE-AND-MONITORING-THE-LEVEL-OF-THE-CYLINDER-USING-ESP32" target="_blank" class="text-cyan-600 underline">IoT Smart LPG Cylinder</a>
+      <br/>- <a href="https://github.com/Pakthapriyan/Electric-vehicle-Battery-optimization/tree/main" target="_blank" class="text-cyan-600 underline">EV Battery Optimization</a>
+      <br/>- <a href="https://github.com/Pakthapriyan/parkinson-disease-prediction" target="_blank" class="text-cyan-600 underline">Parkinson's Disease Prediction</a>
+      <br/>- <a href="https://github.com/Pakthapriyan/Swiggy" target="_blank" class="text-cyan-600 underline">Swiggy Clone</a>
+      <br/>- <a href="https://github.com/Pakthapriyan/Portfolio" target="_blank" class="text-cyan-600 underline">Portfolio Repository</a>`,
+    resume: "📄 Downloading resume now...",
+    contact: `📬 Connect with me:
+              <br/>📧 <a href="mailto:spakthapriyan@gmail.com" class="text-cyan-600 underline">Email</a>
+              <br/>🔗 <a href="https://www.linkedin.com/in/paktha-priyan" target="_blank" class="text-cyan-600 underline">LinkedIn</a>
+              <br/>💻 <a href="https://github.com/Pakthapriyan" target="_blank" class="text-cyan-600 underline">GitHub</a>
+              <br/>🌐 <a href="http://pakthapriyan-portfolio.vercel.app" target="_blank" class="text-cyan-600 underline">Portfolio</a>`,
+    education: "🎓 Completed M.Sc. Computer Science at Sastra University (CGPA: 7.88). Also completed B.Sc. Computer Science (CGPA: 7.10).",
+    experience: "💼 Data Analyst Intern @ NullClass (Dec 2024 - Jan 2025). Worked on EDA, preprocessing, and Tableau visualization.",
     "tech stack": "🛠️ This portfolio is built with React + TailwindCSS, deployed on Vercel.",
-    "about": "🙋‍♂️ Hi, I’m Pakthapriyan! I’m passionate about building scalable web apps, solving problems with data, and exploring cloud technologies (AWS). I enjoy working on full-stack projects and continuously learning new skills to grow as a developer."
   };
 
   const quickOptions = [
@@ -68,12 +71,11 @@ export default function Chatbot() {
   const handleUserMessage = (message) => {
     const { key, text } = findAnswer(message);
 
-    // If resume is requested → auto download
     if (key === "resume" && hiddenDownloadRef.current) {
-      setTimeout(() => hiddenDownloadRef.current.click(), 800); // delay for realism
+      setTimeout(() => hiddenDownloadRef.current.click(), 500);
     }
 
-    setMessages([...messages, { sender: "user", text: message }, { sender: "bot", text }]);
+    setMessages((prev) => [...prev, { sender: "user", text: message }, { sender: "bot", text }]);
   };
 
   const handleSubmit = (e) => {
@@ -83,17 +85,20 @@ export default function Chatbot() {
     setInput("");
   };
 
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
   return (
-    <div className="fixed bottom-5 right-5">
-      {/* Hidden Resume Download */}
+    <div className="fixed z-50 bottom-4 right-4 sm:bottom-5 sm:right-5">
       <a
         ref={hiddenDownloadRef}
         href="/resume.pdf"
-        download="PakthaPriyan_Resume.pdf"
+        download="Pakthapriyan_Resume.pdf"
         className="hidden"
       />
 
-      {/* Toggle button */}
+      {/* Toggle Button */}
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
@@ -103,9 +108,9 @@ export default function Chatbot() {
         </button>
       )}
 
-      {/* Chatbot window */}
+      {/* Chat Window */}
       {isOpen && (
-        <div className="w-80 bg-white shadow-2xl rounded-2xl overflow-hidden border border-cyan-500">
+        <div className="w-[90vw] sm:w-80 md:w-96 max-w-[96vw] sm:max-w-sm md:max-w-md bg-white shadow-2xl rounded-2xl overflow-hidden border border-cyan-500">
           {/* Header */}
           <div className="bg-cyan-500 text-white px-4 py-3 flex justify-between items-center">
             <span className="font-semibold">🤖 Portfolio Assistant</span>
@@ -115,19 +120,20 @@ export default function Chatbot() {
           </div>
 
           {/* Messages */}
-          <div className="h-80 overflow-y-auto p-3 space-y-2 text-sm">
+          <div className="h-[60vh] sm:h-80 md:h-96 max-h-[70vh] overflow-y-auto p-3 space-y-2 text-sm">
             {messages.map((msg, idx) => (
               <div
                 key={idx}
                 className={`p-2 rounded-lg max-w-[75%] ${
                   msg.sender === "bot"
-                    ? "bg-gray-100 text-black border border-cyan-300"
+                    ? "bg-gray-100 text-black border border-cyan-300 self-start"
                     : "bg-cyan-500 text-white ml-auto"
                 }`}
               >
                 <span dangerouslySetInnerHTML={{ __html: msg.text }} />
               </div>
             ))}
+            <div ref={messagesEndRef} />
           </div>
 
           {/* Quick Options */}
@@ -150,7 +156,7 @@ export default function Chatbot() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Type your question..."
-              className="flex-1 px-3 py-2 text-sm bg-white text-black outline-none"
+              className="flex-1 px-3 py-2 text-base sm:text-sm bg-white text-black outline-none"
             />
             <button type="submit" className="px-4 text-cyan-500 font-bold hover:text-black">➤</button>
           </form>
