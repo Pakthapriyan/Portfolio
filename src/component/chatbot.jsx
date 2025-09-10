@@ -2,10 +2,10 @@ import React, { useState, useRef, useEffect } from "react";
 import { MessageCircle, X } from "lucide-react";
 
 const keywordMap = {
-  skills: ["skills", "abilities", "what can you do", "tech skills"],
+  skills: ["skills", "skill", "abilities", "what can you do", "tech skills"],
   react: ["react", "frontend", "javascript framework"],
   aws: ["aws", "cloud", "ec2", "s3", "vpc", "iam", "rds"],
-  projects: ["projects", "portfolio", "work", "show me projects"],
+  projects: ["projects", "project", "portfolio", "work", "show me project", "show me projects"],
   resume: ["resume", "cv", "curriculum vitae", "download"],
   contact: ["contact", "email", "linkedin", "github", "connect"],
   education: ["education", "degree", "college", "university", "cgpa"],
@@ -17,7 +17,10 @@ const keywordMap = {
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { sender: "bot", text: "👋 Hi, I'm your Portfolio Assistant! Ask me about skills, AWS, projects, or get my resume." },
+    {
+      sender: "bot",
+      text: "👋 Hi, I'm your Portfolio Assistant! Ask me about skills, AWS, projects, or get my resume.",
+    },
   ]);
   const [input, setInput] = useState("");
   const hiddenDownloadRef = useRef(null);
@@ -65,7 +68,10 @@ export default function Chatbot() {
         return { key, text: knowledgeBase[key] };
       }
     }
-    return { key: "unknown", text: "🤔 I’m not sure about that. Try asking about skills, AWS, projects, resume, or contact." };
+    return {
+      key: "unknown",
+      text: "🤔 I’m not sure about that. Try asking about skills, AWS, projects, resume, or contact.",
+    };
   };
 
   const handleUserMessage = (message) => {
@@ -75,7 +81,11 @@ export default function Chatbot() {
       setTimeout(() => hiddenDownloadRef.current.click(), 500);
     }
 
-    setMessages((prev) => [...prev, { sender: "user", text: message }, { sender: "bot", text }]);
+    setMessages((prev) => [
+      ...prev,
+      { sender: "user", text: message },
+      { sender: "bot", text },
+    ]);
   };
 
   const handleSubmit = (e) => {
@@ -90,7 +100,7 @@ export default function Chatbot() {
   }, [messages]);
 
   return (
-    <div className="fixed z-50 bottom-4 right-4 sm:bottom-5 sm:right-5">
+    <div className="fixed z-[9999] bottom-4 right-4 sm:bottom-5 sm:right-5 max-h-[90vh]">
       <a
         ref={hiddenDownloadRef}
         href="/resume.pdf"
@@ -110,7 +120,9 @@ export default function Chatbot() {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="w-[90vw] sm:w-80 md:w-96 max-w-[96vw] sm:max-w-sm md:max-w-md bg-white shadow-2xl rounded-2xl overflow-hidden border border-cyan-500">
+        <div className="w-[90vw] sm:w-80 md:w-96 max-w-[96vw] sm:max-w-sm md:max-w-md 
+                        bg-white shadow-2xl rounded-2xl overflow-hidden border border-cyan-500 
+                        flex flex-col max-h-[85vh]">
           {/* Header */}
           <div className="bg-cyan-500 text-white px-4 py-3 flex justify-between items-center">
             <span className="font-semibold">🤖 Portfolio Assistant</span>
@@ -120,7 +132,7 @@ export default function Chatbot() {
           </div>
 
           {/* Messages */}
-          <div className="h-[60vh] sm:h-80 md:h-96 max-h-[70vh] overflow-y-auto p-3 space-y-2 text-sm">
+          <div className="flex-1 overflow-y-auto p-3 space-y-2 text-sm">
             {messages.map((msg, idx) => (
               <div
                 key={idx}
@@ -158,7 +170,12 @@ export default function Chatbot() {
               placeholder="Type your question..."
               className="flex-1 px-3 py-2 text-base sm:text-sm bg-white text-black outline-none"
             />
-            <button type="submit" className="px-4 text-cyan-500 font-bold hover:text-black">➤</button>
+            <button
+              type="submit"
+              className="px-4 text-cyan-500 font-bold hover:text-black"
+            >
+              ➤
+            </button>
           </form>
         </div>
       )}
