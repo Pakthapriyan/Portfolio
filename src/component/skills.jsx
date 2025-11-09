@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { FaReact, FaJava, FaPython, FaAws } from "react-icons/fa";
 import { SiTailwindcss } from "react-icons/si";
 import { AiOutlineDatabase } from "react-icons/ai"; // SQL icon (generic database)
@@ -14,19 +15,30 @@ export default function Skills() {
   ];
 
   return (
-    <section className="p-10 bg-black text-white">
-      <h2 className="text-3xl font-bold text-center mb-10 text-white">
+    <section className="p-10 bg-white dark:bg-black text-gray-900 dark:text-white">
+      <motion.h2
+        initial={{ opacity: 0, y: 12 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="text-3xl font-bold text-center mb-10 text-gray-900 dark:text-white"
+      >
         Skills
-      </h2>
+      </motion.h2>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 text-center">
         {skills.map((skill, index) => (
-          <div
+          <motion.div
             key={index}
-            className="flex flex-col items-center bg-black/40 backdrop-blur-md p-4 rounded-xl shadow-md hover:shadow-cyan-500/50 transition duration-300"
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: index * 0.05 }}
+            whileHover={{ scale: 1.05 }}
+            className="flex flex-col items-center bg-white/60 dark:bg-black/40 text-gray-900 dark:text-white backdrop-blur-md p-4 rounded-xl shadow-md hover:shadow-cyan-500/50 transition duration-300"
           >
             {skill.icon}
             <p className="mt-3 text-lg font-medium">{skill.name}</p>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>
