@@ -49,7 +49,7 @@ export default function PortfolioCard() {
       image: "/images/swiggy-logo-02.png",
       github: "https://github.com/Pakthapriyan/Swiggy",
       category: "react",
-      tech: ["React", "CSS", "Routing"],
+      tech: ["HTML", "CSS", "JavaScript"],
     },
     {
       title: "Stock Market Prediction",
@@ -114,6 +114,23 @@ export default function PortfolioCard() {
         "IAM Roles",
         "HTTPS",
         "Caching",
+      ],
+    },
+    {
+      title: "Deploying a Secure and Scalable Web Server on Amazon EC2",
+      description:
+        "Deployed a secure and scalable web server on Amazon EC2 with automated Apache setup, monitoring, and storage scaling. Implemented security groups, termination protection, CloudWatch monitoring, and EBS/instance type upgrades.",
+      image: undefined,
+      github: undefined,
+      category: "aws",
+      tech: [
+        "AWS EC2 (Linux Instance)",
+        "Amazon EBS",
+        "AWS CloudWatch",
+        "Security Groups",
+        "Apache HTTP Server",
+        "User Data Script (Bash)",
+        "AWS CLI/Console",
       ],
     },
   ];
