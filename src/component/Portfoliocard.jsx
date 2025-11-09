@@ -120,7 +120,7 @@ export default function PortfolioCard() {
       title: "Deploying a Secure and Scalable Web Server on Amazon EC2",
       description:
         "Deployed a secure and scalable web server on Amazon EC2 with automated Apache setup, monitoring, and storage scaling. Implemented security groups, termination protection, CloudWatch monitoring, and EBS/instance type upgrades.",
-      image: undefined,
+      image: "/images/server.png",
       github: undefined,
       category: "aws",
       tech: [
