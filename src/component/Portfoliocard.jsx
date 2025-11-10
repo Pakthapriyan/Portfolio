@@ -133,6 +133,22 @@ export default function PortfolioCard() {
         "AWS CLI/Console",
       ],
     },
+    {
+      title: "End-to-End AWS Infrastructure Automation Using Jenkins and Terraform",
+      description:
+        "This project automates AWS infrastructure deployment using Terraform integrated with a Jenkins CI/CD pipeline. It enables fully automated, repeatable, and scalable cloud provisioning following DevOps and IaC best practices.",
+      image: undefined,
+      github: "https://github.com/Pakthapriyan/aws-jenkins-terraform-iac-automation",
+      category: "aws",
+      tech: [
+        "AWS",
+        "Terraform (IaC)",
+        "Jenkins (CI/CD Pipeline)",
+        "Linux",
+        "Groovy",
+        "Shell Scripting",
+      ],
+    },
   ];
 
   const [activeTab, setActiveTab] = useState("react");

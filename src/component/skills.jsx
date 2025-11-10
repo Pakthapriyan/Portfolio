@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FaReact, FaJava, FaPython, FaAws } from "react-icons/fa";
+import { FaReact, FaJava, FaPython, FaAws, FaLinux } from "react-icons/fa";
 import { SiTailwindcss } from "react-icons/si";
 import { AiOutlineDatabase } from "react-icons/ai"; // SQL icon (generic database)
 
@@ -12,6 +12,7 @@ export default function Skills() {
     { name: "TailwindCSS", icon: <SiTailwindcss size={50} className="text-cyan-500" /> },
     { name: "SQL", icon: <AiOutlineDatabase size={50} className="text-purple-400" /> },
     { name: "AWS", icon: <FaAws size={50} className="text-orange-400" /> },
+    { name: "Linux", icon: <FaLinux size={50} className="text-gray-900 dark:text-yellow-300" /> },
   ];
 
   return (

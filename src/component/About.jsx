@@ -4,7 +4,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="bg-white dark:bg-black text-gray-800 dark:text-gray-300 px-6 py-16 flex flex-col items-center"
+      className="bg-white dark:bg-black text-gray-800 dark:text-gray-300 px-6 py-16 mt-10 flex flex-col items-center"
     >
       {/* Heading */}
       <h2 className="text-3xl font-bold text-cyan-400 mb-6">About Me</h2>
